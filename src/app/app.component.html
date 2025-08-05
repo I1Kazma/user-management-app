@@ -19,7 +19,10 @@
     </select>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div
+    *ngIf="filteredUsers.length > 0; else noUsers"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+  >
     <div
       *ngFor="let user of filteredUsers"
       (click)="selectUser(user)"
@@ -35,6 +38,10 @@
       </p>
     </div>
   </div>
+
+  <ng-template #noUsers>
+    <div class="text-center text-gray-500 mt-4">Пользователи не найдены</div>
+  </ng-template>
 
   <div *ngIf="selectedUserEmail" class="mt-4 p-4 bg-blue-100 rounded">
     <h2 class="text-lg font-semibold">Выбранный пользователь</h2>
